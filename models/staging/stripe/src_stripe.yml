@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: stripe
+    database: raw
+    schema: stripe
+    tables:
+      - name: payment
+
+models:
+  - name: stg_payments
+    columns:
+      - name: payment_id
+        tests:
+          - unique
+      - name: order_id
+        description: The unique indetifier of the order that was associated with the payment.
+      - name: payment_method
+        description: The payment method associated with the order
+      - name: status
+        description : "{{ doc('payments_status') }}"
